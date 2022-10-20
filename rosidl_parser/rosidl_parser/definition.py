@@ -149,6 +149,10 @@ class BasicType(AbstractNestableType):
     def __eq__(self, other):
         return super().__eq__(other) and self.typename == other.typename
 
+    # Edit by Loy van Beek
+    def __repr__(self):
+        return f"BasicType({self.typename})"
+
 
 class NamedType(AbstractNestableType):
     """A type identified by the name."""
@@ -166,6 +170,10 @@ class NamedType(AbstractNestableType):
 
     def __eq__(self, other):
         return super().__eq__(other) and self.name == other.name
+
+    # Edit by Loy van Beek
+    def __repr__(self):
+        return f"NamedType({self.name})"
 
 
 class NamespacedType(AbstractNestableType):
@@ -191,6 +199,10 @@ class NamespacedType(AbstractNestableType):
     def __eq__(self, other):
         return super().__eq__(other) and \
             self.namespaces == other.namespaces and self.name == other.name
+
+    # Edit by Loy van Beek
+    def __repr__(self):
+        return f"NamespacedType({self.namespaces}, {self.name})"
 
 
 class AbstractGenericString(AbstractNestableType):
@@ -309,6 +321,9 @@ class AbstractNestedType(AbstractType):
     def __eq__(self, other):
         return super().__eq__(other) and self.value_type == other.value_type
 
+    #Edit by Loy van Beek
+    def __repr__(self):
+        return f"{type(self)}({self.value_type})"
 
 class Array(AbstractNestedType):
     """An array type with a static size."""
@@ -473,6 +488,10 @@ class Member(Annotatable):
         assert isinstance(type_, AbstractType)
         self.type = type_
         self.name = name
+
+    # Edit by Loy van Beek
+    def __repr__(self):
+        return f"Member({self.type}, {self.name})"
 
 
 class Structure(Annotatable):
